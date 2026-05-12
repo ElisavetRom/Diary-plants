@@ -12,6 +12,6 @@ coverage/
 .DS_Store
 Thumbs.db
 
-# Среда
+
 .env
 .env.local
