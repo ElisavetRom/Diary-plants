@@ -81,7 +81,7 @@ async function renderPlantsGrid() {
                 </div>
                 <div class="plant-actions">
                     <button class="btn-water-card" data-id="${plant.id}">💧 Полить</button>
-                    <button class="btn-detail-card" data-id="${plant.id}">👁️ Подробнее</button>
+                    <button class="btn-detail-card" data-id="${plant.id}"> Подробнее</button>
                 </div>
             </div>
         </div>
