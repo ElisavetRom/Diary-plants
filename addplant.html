@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>➕ Добавить растение | PlantDiary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar__brand">
+                <span class="navbar__logo-icon">🌿</span>
+                <span class="navbar__logo-text">PlantDiary</span>
+            </div>
+            <div class="navbar__links">
+                <a href="dashboard.html" class="navbar__link">🏠 Главная</a>
+                <a href="myplants.html" class="navbar__link">🌱 Мои растения</a>
+                <a href="addplant.html" class="navbar__link navbar__link--active">➕ Добавить</a>
+                <a href="calendar.html" class="navbar__link">📅 Календарь</a>
+                <a href="profile.html" class="navbar__link">👤 Профиль</a>
+                <a href="#" id="logoutBtn" class="navbar__link navbar__link--logout">🚪 Выйти</a>
+            </div>
+        </nav>
+
+        <div class="page-header"><h1>➕ Новое растение</h1><p>Заполни информацию о новом зелёном друге</p></div>
+
+        <div class="form-container">
+            <form id="addPlantForm" class="plant-form">
+                <div class="form-group"><label>Название растения *</label><input type="text" id="plantName" required placeholder="Например: Монстера, Фикус, Кактус..."></div>
+                <div class="form-group"><label>Тип растения *</label><select id="plantType" required><option value="">Выберите тип</option><option value="cactus"> Кактус</option><option value="ficus"> Фикус</option><option value="orchid"> Орхидея</option><option value="succulent"> Суккулент</option><option value="foliage"> Декоративно-лиственное</option><option value="flowering"> Цветущее</option><option value="other"> Другое</option></select></div>
+                <div class="form-row">
+                    <div class="form-group"><label>Частота полива (дней) *</label><input type="number" id="waterInterval" required min="1" max="60" value="7"><small>Через сколько дней нужно поливать</small></div>
+                    <div class="form-group"><label>Дата последнего полива</label><input type="date" id="lastWatered"><small>Оставьте пустым, если не поливали</small></div>
+                </div>
+                <div class="form-group"><label>Фото растения (URL)</label><input type="url" id="plantImage" placeholder="https://example.com/plant.jpg"><div id="imagePreview" class="image-preview"></div></div>
+                <div class="form-group"><label>Личные заметки</label><textarea id="plantNotes" rows="4" placeholder="Особенности ухода, любит ли солнце, как часто опрыскивать..."></textarea></div>
+                <div class="form-group"><label>Местоположение в доме</label><input type="text" id="plantLocation" placeholder="Например: Гостиная, подоконник, спальня..."></div>
+                <div class="form-buttons"><button type="submit" class="button button--primary">💾 Сохранить растение</button><button type="button" class="button button--secondary" onclick="window.location.href='myplants.html'">❌ Отмена</button></div>
+            </form>
+        </div>
+
+        
+        <!-- <footer><p>🌻 Добавь растение с любовью и заботой ✨</p></footer> -->
+    </div>
+
+    <script type="module" src="js/pages/addplant.js"></script>
+</body>
+</html>

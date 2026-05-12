@@ -1,0 +1,225 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Лизка_Роутер",
+      "email": "demo@plantdiary.com",
+      "password": "demo123",
+      "profile": {
+        "city": "Москва",
+        "bio": "Люблю комнатные растения 🌿",
+        "avatar": "https://avatars.mds.yandex.net/i?id=2715b2b6a17f2d1a2f1514ae30c58aeeabd09b66-5351135-images-thumbs&n=13",
+        "joinDate": "2024-01-15",
+        "notifications": true,
+        "units": "celsius"
+      }
+    }
+  ],
+  "plants": [
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Монстера",
+      "type": "foliage",
+      "typeLabel": "🍃 Декоративно-лиственное",
+      "waterInterval": 7,
+      "lastWatered": "2026-05-09",
+      "imageUrl": "https://images.unsplash.com/photo-1614594976925-6420ecdbe0b5?w=400",
+      "notes": "Любит яркий рассеянный свет",
+      "location": "Гостиная",
+      "createdAt": "2026-05-01",
+      "health": "healthy"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "name": "Спатифиллум",
+      "type": "flowering",
+      "typeLabel": "🌺 Цветущее",
+      "waterInterval": 4,
+      "lastWatered": "2026-05-12",
+      "imageUrl": "https://images.unsplash.com/photo-1593691509543-c55fb32e6de5?w=400",
+      "notes": "Женское счастье, любит опрыскивание",
+      "location": "Спальня",
+      "createdAt": "2026-05-01",
+      "health": "healthy"
+    },
+    {
+      "name": "роза",
+      "type": "succulent",
+      "waterInterval": 7,
+      "lastWatered": "2026-05-12",
+      "imageUrl": "https://main-cdn.sbermegamarket.ru/big2/hlr-system/-19/001/966/342/121/846/100064416884b0.jpg",
+      "notes": "",
+      "location": "",
+      "userId": 1,
+      "id": 1778344607891,
+      "createdAt": "2026-05-09",
+      "health": "healthy",
+      "typeLabel": "🌱 Суккулент"
+    },
+    {
+      "name": "лилия",
+      "type": "flowering",
+      "waterInterval": 7,
+      "lastWatered": "2026-05-09",
+      "imageUrl": "https://avatars.mds.yandex.net/get-mpic/11588019/2a0000018b80864b74e5bdfa1bccf2a1abba/orig",
+      "notes": "",
+      "location": "",
+      "userId": 1,
+      "id": 1778345129445,
+      "createdAt": "2026-05-09",
+      "health": "healthy",
+      "typeLabel": "🌺 Цветущее"
+    },
+    {
+      "name": "кактус",
+      "type": "cactus",
+      "waterInterval": 7,
+      "lastWatered": "2026-05-09",
+      "imageUrl": "https://avatars.mds.yandex.net/i?id=6bd887883afc74a4ac5b91970e285e96588fbd37-5179607-images-thumbs&n=13",
+      "notes": "",
+      "location": "",
+      "typeLabel": "🌵 Кактус",
+      "userId": 1,
+      "id": 1778347787050,
+      "createdAt": "2026-05-09",
+      "health": "healthy"
+    }
+  ],
+  "activities": [
+    {
+      "id": 1,
+      "plantId": 1,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-01",
+      "note": "Обычный полив",
+      "photo": null
+    },
+    {
+      "id": 2,
+      "plantId": 2,
+      "userId": 1,
+      "type": "fertilize",
+      "date": "2026-05-03",
+      "note": "Летняя подкормка",
+      "photo": null
+    },
+    {
+      "plantId": 1778344607891,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-09",
+      "note": "Полив",
+      "id": 3
+    },
+    {
+      "plantId": 2,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-09",
+      "note": "Полив растения",
+      "photo": null,
+      "id": 4
+    },
+    {
+      "plantId": 1778344607891,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-09",
+      "note": "Полив",
+      "id": 5
+    },
+    {
+      "plantId": 2,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-09",
+      "note": "Полив растения",
+      "photo": null,
+      "id": 6
+    },
+    {
+      "plantId": 2,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-09",
+      "note": "Полив растения",
+      "photo": null,
+      "id": 7
+    },
+    {
+      "plantId": 1,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-09",
+      "note": "Полив растения",
+      "photo": null,
+      "id": 8
+    },
+    {
+      "plantId": 1778344607891,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-09",
+      "note": "Полив растения",
+      "photo": null,
+      "id": 9
+    },
+    {
+      "plantId": 1778344607891,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-09",
+      "note": "Полив растения",
+      "photo": null,
+      "id": 10
+    },
+    {
+      "plantId": 1778344607891,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-12",
+      "note": "Полив растения",
+      "photo": null,
+      "id": 11
+    },
+    {
+      "plantId": 1778344607891,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-12",
+      "note": "Полив растения",
+      "photo": null,
+      "id": 12
+    },
+    {
+      "plantId": 1778344607891,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-12",
+      "note": "Полив растения",
+      "photo": null,
+      "id": 13
+    },
+    {
+      "plantId": 1778344607891,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-12",
+      "note": "Полив растения",
+      "photo": null,
+      "id": 14
+    },
+    {
+      "plantId": 2,
+      "userId": 1,
+      "type": "water",
+      "date": "2026-05-12",
+      "note": "Полив растения",
+      "photo": null,
+      "id": 15
+    }
+  ]
+}

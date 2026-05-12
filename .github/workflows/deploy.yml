@@ -1,0 +1,69 @@
+name: Deploy PlantDiary to Render
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  # ========== JOB 1: ЗАПУСК ТЕСТОВ ==========
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name:  Checkout code
+        uses: actions/checkout@v4
+      
+      - name:  Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name:  Install dependencies
+        run: npm ci
+      
+      - name: 🧪 Run tests
+        run: npm test
+        continue-on-error: false
+
+  # ========== JOB 2: ДЕПЛОЙ НА RENDER ==========
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    
+    steps:
+      - name:  Checkout code
+        uses: actions/checkout@v4
+      
+      - name:  Trigger Render Deploy
+        env:
+          DEPLOY_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          echo " Отправка запроса на деплой в Render..."
+          curl -X POST "$DEPLOY_URL"
+          echo " Деплой запущен!"
+
+  # ========== JOB 3: УВЕДОМЛЕНИЕ О СТАТУСЕ ==========
+  notify:
+    needs: [test, deploy]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name:  Show deployment status
+        run: |
+          echo "========================================="
+          echo " Статус деплоя PlantDiary"
+          echo "========================================="
+          echo " Тесты: ${{ needs.test.result }}"
+          echo " Деплой: ${{ needs.deploy.result }}"
+          echo "========================================="
+          if [ "${{ needs.test.result }}" == "success" ] && [ "${{ needs.deploy.result }}" == "success" ]; then
+            echo  ПРИЛОЖЕНИЕ УСПЕШНО ЗАДЕПЛОЕНО! "
+          else
+            echo " Деплой не удался. Проверьте логи выше."
+            exit 1
+          fi

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌿 Главная | PlantDiary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar__brand">
+                <span class="navbar__logo-icon">🌿</span>
+                <span class="navbar__logo-text">PlantDiary</span>
+            </div>
+            <div class="navbar__links">
+                <a href="dashboard.html" class="navbar__link navbar__link--active">🏠 Главная</a>
+                <a href="myplants.html" class="navbar__link">🌱 Мои растения</a>
+                <a href="addplant.html" class="navbar__link">➕ Добавить</a>
+                <a href="calendar.html" class="navbar__link">📅 Календарь</a>
+                <a href="profile.html" class="navbar__link">👤 Профиль</a>
+                <a href="#" id="logoutBtn" class="navbar__link navbar__link--logout">🚪 Выйти</a>
+            </div>
+        </nav>
+
+        <header class="dashboard-header" style="background: white; border-radius: 32px; padding: 24px 32px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <div>
+                <h1>Привет, <span id="userName">садовод</span>! 🌱</h1>
+                <p class="subtitle">Вот что происходит с твоими растениями сегодня</p>
+            </div>
+            <div class="current-date" id="currentDate" style="background: #eaf4e4; padding: 10px 20px; border-radius: 40px;"></div>
+        </header>
+
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-card__icon">🌿</div>
+                <div class="stat-card__info">
+                    <h3 id="totalPlants">0</h3>
+                    <p>Всего растений</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__icon">💧</div>
+                <div class="stat-card__info">
+                    <h3 id="needWater">0</h3>
+                    <p>Нужен полив</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__icon">✅</div>
+                <div class="stat-card__info">
+                    <h3 id="healthyCount">0</h3>
+                    <p>Здоровых</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__icon">⚠️</div>
+                <div class="stat-card__info">
+                    <h3 id="overdueCount">0</h3>
+                    <p>Просрочено</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="attention-section">
+            <div class="section-header"><h2>⏰ Требуют внимания</h2><span class="badge">Срочно</span></div>
+            <div id="attentionList" class="critical-list"></div>
+        </div>
+
+        <div class="recent-section">
+            <h2> Последние действия</h2>
+            <div id="recentActivities" class="activities-list"></div>
+        </div>
+
+        <div class="tips-card">
+            <h3>💡 Совет дня</h3>
+            <p id="dailyTip">Поливай растения утром или вечером, чтобы избежать ожогов листьев.</p>
+        </div>
+
+        <!-- <footer><p>🌻 Заботься о своих зелёных друзьях каждый день</p></footer> -->
+    </div>
+
+
+    <script type="module" src="js/pages/dashboard.js"></script>
+</body>
+</html>

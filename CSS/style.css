@@ -1,0 +1,656 @@
+/* Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #f5f7f0 0%, #e9efdf 100%);
+    color: #2d3e2b;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===== КОМПОНЕНТ НАВИГАЦИИ (БЭМ-блок navbar) ===== */
+.navbar {
+    background: white;
+    border-radius: 60px;
+    padding: 12px 28px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0ecd6;
+}
+
+.navbar__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar__logo-icon {
+    font-size: 1.8rem;
+}
+
+.navbar__logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #2d6a4f, #40916c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.navbar__links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.navbar__link {
+    padding: 8px 20px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    background: #f0f5eb;
+    color: #2d6a4f;
+}
+
+.navbar__link:hover {
+    background: #40916c;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.navbar__link--active {
+    background: #2d6a4f;
+    color: white;
+    box-shadow: 0 4px 10px rgba(45, 106, 79, 0.3);
+}
+
+.navbar__link--logout {
+    background: #ffe0db;
+    color: #c23b1c;
+}
+
+/* ===== КОМПОНЕНТ КНОПКИ (БЭМ-блок button) ===== */
+.button {
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    border: none;
+    font-family: inherit;
+}
+
+.button--primary {
+    background: linear-gradient(135deg, #2d6a4f, #40916c);
+    color: white;
+}
+
+.button--primary:hover {
+    transform: scale(0.97);
+    box-shadow: 0 6px 14px rgba(45, 106, 79, 0.3);
+}
+
+.button--secondary {
+    background: #eaf4e4;
+    color: #2d6a4f;
+}
+
+.button--secondary:hover {
+    background: #d4e6ca;
+    transform: scale(0.97);
+}
+
+.button--danger {
+    background: #e76f51;
+    color: white;
+}
+
+.button--danger:hover {
+    background: #d95a3a;
+    transform: scale(0.97);
+}
+
+.button--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.button--disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===== КОМПОНЕНТ ТОГГЛЕ (БЭМ-блок toggle) ===== */
+.toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.toggle--on {
+    color: #2d6a4f;
+}
+
+.toggle--off {
+    color: #8ba06e;
+}
+
+.toggle__slider {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 28px;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 28px;
+}
+
+.toggle__slider::before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.toggle--on .toggle__slider {
+    background-color: #2d6a4f;
+}
+
+.toggle--on .toggle__slider::before {
+    transform: translateX(24px);
+}
+
+.toggle__label {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.toggle--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ===== КОМПОНЕНТ КАРТОЧКИ РАСТЕНИЯ (БЭМ-блок plant-card) ===== */
+.plants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin: 24px 0;
+}
+
+.plant-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e0ecd6;
+    cursor: pointer;
+}
+
+.plant-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.15);
+}
+
+.plant-card__image-container {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.plant-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.plant-card__content {
+    padding: 20px;
+}
+
+.plant-card__title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #1e3a2f;
+}
+
+.plant-card__type {
+    font-size: 0.75rem;
+    color: #8ba06e;
+    margin-bottom: 12px;
+}
+
+.plant-card__stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+    font-size: 0.85rem;
+}
+
+.plant-card__status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+    margin: 8px 0;
+}
+
+.plant-card__status--overdue {
+    background: #ffe0db;
+    color: #c23b1c;
+}
+
+.plant-card__status--today {
+    background: #d3f0cd;
+    color: #2b7a3e;
+}
+
+.plant-card__status--soon {
+    background: #fff0cf;
+    color: #b86b00;
+}
+
+.plant-card__status--ok {
+    background: #eaf4e4;
+    color: #5a6e4a;
+}
+
+.plant-card__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.plant-card__btn-water {
+    flex: 1;
+    padding: 8px;
+    border-radius: 20px;
+    border: none;
+    background: #2d6a4f;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.plant-card__btn-detail {
+    flex: 1;
+    padding: 8px;
+    border-radius: 20px;
+    border: none;
+    background: #eaf4e4;
+    color: #2d6a4f;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* ===== КОМПОНЕНТ МОДАЛЬНОГО ОКНА (БЭМ-блок modal) ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal--open {
+    display: flex;
+}
+
+.modal__content {
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 32px;
+    overflow: hidden;
+    animation: modalFadeIn 0.2s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e0ecd6;
+}
+
+.modal__title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2d6a4f;
+}
+
+.modal__close {
+    font-size: 28px;
+    cursor: pointer;
+    color: #8ba06e;
+    transition: all 0.2s;
+}
+
+.modal__close:hover {
+    color: #c23b1c;
+}
+
+.modal__body {
+    padding: 24px;
+}
+
+.modal__footer {
+    padding: 16px 24px;
+    border-top: 1px solid #e0ecd6;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* ===== КОМПОНЕНТ БЕЙДЖА ПОЛИВА (БЭМ-блок watering-badge) ===== */
+.watering-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.watering-badge--overdue {
+    background: #ffe0db;
+    color: #c23b1c;
+}
+
+.watering-badge--today {
+    background: #d3f0cd;
+    color: #2b7a3e;
+}
+
+.watering-badge--soon {
+    background: #fff0cf;
+    color: #b86b00;
+}
+
+.watering-badge--ok {
+    background: #eaf4e4;
+    color: #5a6e4a;
+}
+
+/* ===== КАРТОЧКИ СТАТИСТИКИ ===== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 28px;
+    padding: 24px 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2f0da;
+}
+
+.stat-card__icon {
+    font-size: 3rem;
+}
+
+.stat-card__info h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e3a2f;
+}
+
+.stat-card__info p {
+    color: #7c8b6e;
+    font-size: 0.85rem;
+}
+
+/* ===== АДАПТИВНОСТЬ (media queries) ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        border-radius: 28px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .plants-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ ДАШБОРДА ===== */
+.critical-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px;
+    background: #f9fbf6;
+    border-radius: 16px;
+    transition: all 0.2s;
+    margin-bottom: 8px;
+}
+
+.critical-item:hover {
+    background: #f0f5eb;
+}
+
+.plant-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.water-status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.water-btn {
+    background: #2d6a4f;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.water-btn:hover {
+    background: #1f543e;
+}
+
+.water-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.water-badge.overdue {
+    background: #ffe0db;
+    color: #c23b1c;
+}
+
+.water-badge.today {
+    background: #d3f0cd;
+    color: #2b7a3e;
+}
+
+.water-badge.soon {
+    background: #fff0cf;
+    color: #b86b00;
+}
+
+.water-badge.ok {
+    background: #eaf4e4;
+    color: #5a6e4a;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #f9fbf6;
+    border-radius: 16px;
+    margin-bottom: 8px;
+}
+
+.activity-icon {
+    font-size: 1.5rem;
+}
+
+.activity-info {
+    flex: 1;
+}
+
+.activity-info strong {
+    display: block;
+    font-size: 0.9rem;
+}
+
+.activity-info span {
+    font-size: 0.8rem;
+    color: #7c8b6e;
+}
+
+.activity-date {
+    font-size: 0.75rem;
+    color: #8ba06e;
+}
+
+.attention-section {
+    background: white;
+    border-radius: 28px;
+    padding: 24px;
+    margin-bottom: 32px;
+    border-left: 5px solid #f4a261;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.badge {
+    background: #f4a261;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.recent-section {
+    background: white;
+    border-radius: 28px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.tips-card {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border-radius: 28px;
+    padding: 24px;
+    margin-top: 20px;
+}
+
+.tips-card h3 {
+    color: #2d6a4f;
+    margin-bottom: 10px;
+}
+
+.empty-state-small {
+    text-align: center;
+    padding: 20px;
+    color: #8ba06e;
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-header {
+    background: white;
+    border-radius: 32px;
+    padding: 24px 32px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.current-date {
+    background: #eaf4e4;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    color: #2d6a4f;
+}

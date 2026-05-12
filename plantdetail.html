@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌿 Карточка растения | PlantDiary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar__brand">
+                <span class="navbar__logo-icon">🌿</span>
+                <span class="navbar__logo-text">PlantDiary</span>
+            </div>
+            <div class="navbar__links">
+                <a href="dashboard.html" class="navbar__link">🏠 Главная</a>
+                <a href="myplants.html" class="navbar__link">🌱 Мои растения</a>
+                <a href="addplant.html" class="navbar__link">➕ Добавить</a>
+                <a href="calendar.html" class="navbar__link">📅 Календарь</a>
+                <a href="profile.html" class="navbar__link">👤 Профиль</a>
+                <a href="#" id="logoutBtn" class="navbar__link navbar__link--logout">🚪 Выйти</a>
+            </div>
+        </nav>
+
+        <div id="plantDetail" class="detail-container"></div>
+
+        <div id="eventModal" class="modal">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <h2 class="modal__title">📝 Добавить запись в дневник</h2>
+                    <span class="modal__close">&times;</span>
+                </div>
+                <form id="addEventForm">
+                    <div class="modal__body">
+                        <div class="form-group">
+                            <label>Тип действия</label>
+                            <select id="eventType" required>
+                                <option value="water">💧 Полив</option>
+                                <option value="fertilize">🌿 Подкормка</option>
+                                <option value="prune">✂️ Обрезка</option>
+                                <option value="repot">🏺 Пересадка</option>
+                                <option value="treat">🩺 Обработка</option>
+                                <option value="note">📝 Заметка</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Дата</label>
+                            <input type="date" id="eventDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Заметка</label>
+                            <textarea id="eventNote" rows="3" placeholder="Что произошло?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Фото (необязательно)</label>
+                            <input type="url" id="eventPhoto" placeholder="URL фото">
+                        </div>
+                    </div>
+                    <div class="modal__footer">
+                        <button type="submit" class="button button--primary">💾 Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- <footer><p>🌻 Веди дневник ухода за каждым растением 📖</p></footer> -->
+    </div>
+
+    <script type="module" src="js/pages/plantdetail.js"></script>
+</body>
+</html>

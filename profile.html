@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👤 Профиль | PlantDiary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar__brand">
+                <span class="navbar__logo-icon">🌿</span>
+                <span class="navbar__logo-text">PlantDiary</span>
+            </div>
+            <div class="navbar__links">
+                <a href="dashboard.html" class="navbar__link">🏠 Главная</a>
+                <a href="myplants.html" class="navbar__link">🌱 Мои растения</a>
+                <a href="addplant.html" class="navbar__link">➕ Добавить</a>
+                <a href="calendar.html" class="navbar__link">📅 Календарь</a>
+                <a href="profile.html" class="navbar__link navbar__link--active">👤 Профиль</a>
+                <a href="#" id="logoutBtn" class="navbar__link navbar__link--logout">🚪 Выйти</a>
+            </div>
+        </nav>
+
+        <div class="profile-container">
+            <div class="profile-card">
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar" id="avatarDisplay">👩‍🌾</div>
+                    <button class="button button--secondary" onclick="changeAvatar()">🖼️ Сменить аватар</button>
+                </div>
+                <div class="profile-info-section">
+                    <h1 id="profileName">Анна</h1>
+                    <p class="join-date" id="joinDate"></p>
+                    <div class="info-row"><span class="info-icon">📧</span><span class="info-label">Email</span><span class="info-value" id="profileEmail"></span></div>
+                    <div class="info-row"><span class="info-icon">📍</span><span class="info-label">Город</span><span class="info-value" id="profileCity"></span></div>
+                    <div class="info-row"><span class="info-icon">🌱</span><span class="info-label">О себе</span><span class="info-value" id="profileBio"></span></div>
+                    <button class="button button--primary" onclick="editProfile()">✏️ Редактировать профиль</button>
+                </div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="stat-item"><div class="stat-number" id="userTotalPlants">0</div><div class="stat-label">Растений</div></div>
+                <div class="stat-item"><div class="stat-number" id="userTotalWaterings">0</div><div class="stat-label">Поливов</div></div>
+                <div class="stat-item"><div class="stat-number" id="userStreak">0</div><div class="stat-label">Дней заботы</div></div>
+                <div class="stat-item"><div class="stat-number" id="userLevel">🌱</div><div class="stat-label">Уровень</div></div>
+            </div>
+
+            <div class="settings-card">
+                <h2>⚙️ Настройки</h2>
+                <div class="setting-item">
+                    <div class="setting-info"><h4>🔔 Уведомления о поливе</h4><p>Напоминать, когда нужно полить растения</p></div>
+                    <label class="switch"><input type="checkbox" id="notificationsToggle"><span class="slider"></span></label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info"><h4>🗑️ Очистить все данные</h4><p>Сбросить всю информацию о растениях</p></div>
+                    <button class="button button--danger" onclick="resetAllData()">Сбросить</button>
+                </div>
+            </div>
+
+            <div class="achievements-card">
+                <h2>🏆 Достижения</h2>
+                <div class="badges-grid" id="badgesContainer"></div>
+            </div>
+        </div>
+
+        <!-- <footer><p>🌻 Продолжай заботиться о растениях — достигай новых уровней!</p></footer> -->
+    </div>
+
+    <script type="module" src="js/pages/profile.js"></script>
+</body>
+</html>

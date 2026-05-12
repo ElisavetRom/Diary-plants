@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Календарь и статистика | PlantDiary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar__brand">
+                <span class="navbar__logo-icon">🌿</span>
+                <span class="navbar__logo-text">PlantDiary</span>
+            </div>
+            <div class="navbar__links">
+                <a href="dashboard.html" class="navbar__link">🏠 Главная</a>
+                <a href="myplants.html" class="navbar__link">🌱 Мои растения</a>
+                <a href="addplant.html" class="navbar__link">➕ Добавить</a>
+                <a href="calendar.html" class="navbar__link navbar__link--active">📅 Календарь</a>
+                <a href="profile.html" class="navbar__link">👤 Профиль</a>
+                <a href="#" id="logoutBtn" class="navbar__link navbar__link--logout">🚪 Выйти</a>
+            </div>
+        </nav>
+
+        <div class="page-header"><h1>Календарь ухода</h1><p>Отслеживай свою активность и планируй уход за растениями</p></div>
+
+        <div class="chart-card"><h2> Активность по уходу</h2><p>Количество действий за последние 7 дней</p><canvas id="activityChart"></canvas></div>
+
+        <div class="calendar-card">
+            <div class="calendar-header">
+                <button id="prevMonth">◀</button>
+                <h2 id="monthYear"></h2>
+                <button id="nextMonth">▶</button>
+            </div>
+            <div class="calendar-weekdays"><div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div></div>
+            <div id="calendarDays" class="calendar-days"></div>
+        </div>
+
+        <div class="stats-detail-card" style="background: white; border-radius: 32px; padding: 24px; margin-bottom: 32px;">
+            <h2> Подробная статистика</h2>
+            <div id="statsDetail" class="stats-detail-grid"></div>
+        </div>
+
+        <div class="upcoming-card"><h2>⏰ Ближайшие события</h2><div id="upcomingEvents" class="upcoming-list"></div></div>
+
+        <div class="care-tips"><h2>📚 Советы по уходу за растениями</h2><div class="tips-grid"><div class="tip-item">💧 Летом поливай чаще, зимой - реже</div><div class="tip-item">🌞 Большинству растений нужен яркий рассеянный свет</div><div class="tip-item">🌿 Опрыскивай листья в жаркую погоду</div><div class="tip-item">🏺 Пересаживай растения весной, раз в 1-2 года</div></div></div>
+
+        <!-- <footer><p>🌻 Регулярный уход — залог здоровья твоих растений 💚</p></footer> -->
+    </div>
+
+    <script type="module" src="js/pages/calendar.js"></script>
+</body>
+</html>
