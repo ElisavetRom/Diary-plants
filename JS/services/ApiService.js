@@ -18,6 +18,7 @@ class ApiService {
      * Базовая функция для HTTP-запросов через Fetch API
      * ЛИСТИНГ 6.26
      */
+    
     async request(endpoint, options = {}) {
         const url = `${this.baseUrl}${endpoint}`;
         
