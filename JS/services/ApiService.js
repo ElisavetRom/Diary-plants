@@ -7,7 +7,7 @@
  * - 6.4.4 Обработка ошибок (листинг 6.32)
  */
 
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = 'https://diary-plants.onrender.com';
 
 class ApiService {
     constructor() {
