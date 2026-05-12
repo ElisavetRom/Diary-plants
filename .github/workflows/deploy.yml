@@ -45,25 +45,3 @@ jobs:
           echo " Отправка запроса на деплой в Render..."
           curl -X POST "$DEPLOY_URL"
           echo " Деплой запущен!"
-
-  # ========== JOB 3: УВЕДОМЛЕНИЕ О СТАТУСЕ ==========
-  notify:
-    needs: [test, deploy]
-    runs-on: ubuntu-latest
-    if: always()
-    
-    steps:
-      - name:  Show deployment status
-        run: |
-          echo "========================================="
-          echo " Статус деплоя PlantDiary"
-          echo "========================================="
-          echo " Тесты: ${{ needs.test.result }}"
-          echo " Деплой: ${{ needs.deploy.result }}"
-          echo "========================================="
-          if [ "${{ needs.test.result }}" == "success" ] && [ "${{ needs.deploy.result }}" == "success" ]; then
-            echo  ПРИЛОЖЕНИЕ УСПЕШНО ЗАДЕПЛОЕНО! "
-          else
-            echo " Деплой не удался. Проверьте логи выше."
-            exit 1
-          fi
