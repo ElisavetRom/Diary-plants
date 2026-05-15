@@ -920,3 +920,28 @@ canvas {
         transform: scale(1) translateY(0);
     }
 }
+@media (max-width: 480px) {
+    .calendar-card {
+        padding: 16px;           /* Уменьшаем отступы карточки */
+    }
+    
+    .calendar-weekdays {
+        font-size: 0.6rem;       /* Ещё меньше шрифт */
+    }
+    
+    .calendar-day {
+        font-size: 0.6rem;       /* Ещё меньше шрифт чисел */
+        padding: 2px;
+        border-radius: 12px;     /* Меньше скругление */
+    }
+    
+    .calendar-header button {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;         /* Уменьшаем кнопки переключения месяцев */
+    }
+    
+    .calendar-header h2 {
+        font-size: 1.2rem;       /* Уменьшаем заголовок месяца */
+    }
+}
