@@ -922,26 +922,84 @@ canvas {
 }
 @media (max-width: 480px) {
     .calendar-card {
-        padding: 16px;           /* Уменьшаем отступы карточки */
+        padding: 12px;
+        overflow-x: auto;  /* ← Добавить эту строку */
+    }
+    
+    .calendar-days {
+        min-width: 350px;
+        gap: 4px;
     }
     
     .calendar-weekdays {
-        font-size: 0.6rem;       /* Ещё меньше шрифт */
+        min-width: 350px;
+    }
+}
+
+/* components.css — добавить в конец файла */
+
+/* ===== АДАПТИВНАЯ ВЁРСТКА ДЛЯ БЛИЖАЙШИХ СОБЫТИЙ ===== */
+
+@media (max-width: 768px) {
+    .upcoming-item {
+        flex-wrap: wrap;
+        gap: 10px;
     }
     
-    .calendar-day {
-        font-size: 0.6rem;       /* Ещё меньше шрифт чисел */
-        padding: 2px;
-        border-radius: 12px;     /* Меньше скругление */
+    .upcoming-info {
+        flex: 1;
+        min-width: 140px;
     }
     
-    .calendar-header button {
-        width: 32px;
-        height: 32px;
-        font-size: 1rem;         /* Уменьшаем кнопки переключения месяцев */
+    .upcoming-status {
+        font-size: 0.7rem;
+        padding: 4px 8px;
     }
     
-    .calendar-header h2 {
-        font-size: 1.2rem;       /* Уменьшаем заголовок месяца */
+    .water-btn-small {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .upcoming-card {
+        padding: 16px;
+    }
+    
+    .upcoming-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .upcoming-img {
+        width: 45px;
+        height: 45px;
+        margin: 0 auto;
+    }
+    
+    .upcoming-info {
+        text-align: center;
+        min-width: auto;
+    }
+    
+    .upcoming-info strong {
+        font-size: 1rem;
+        display: block;
+    }
+    
+    .upcoming-info span {
+        font-size: 0.7rem;
+    }
+    
+    .upcoming-status {
+        display: inline-block;
+        width: auto;
+    }
+    
+    .water-btn-small {
+        width: auto;
+        min-width: 100px;
     }
 }
