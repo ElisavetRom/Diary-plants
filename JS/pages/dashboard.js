@@ -1,12 +1,8 @@
-/**
- * Dashboard page - ЧИСТЫЙ ООП
- */
-
 import { authService } from '../services/AuthService.js';
 import { plantService } from '../services/PlantService.js';
 import { activityService } from '../services/ActivityService.js';
 
-// Проверка авторизации
+
 if (!authService.isAuthenticated()) {
     window.location.href = 'login.html';
 }
@@ -17,11 +13,11 @@ async function initDashboard() {
     const user = authService.getCurrentUser();
     if (!user) return;
     
-    // Имя пользователя
+  
     const userNameSpan = document.getElementById('userName');
     if (userNameSpan) userNameSpan.innerText = user.name;
     
-    // Дата
+
     const dateElement = document.getElementById('currentDate');
     if (dateElement) {
         const options = { day: 'numeric', month: 'long', year: 'numeric' };
@@ -32,7 +28,7 @@ async function initDashboard() {
     await renderAttentionList();
     await renderRecentActivities();
     
-    // Совет дня
+
     const tips = ['Поливай растения утром или вечером, чтобы избежать ожогов листьев.'];
     const tipElement = document.getElementById('dailyTip');
     if (tipElement) tipElement.innerText = tips[0];
@@ -172,7 +168,7 @@ function escapeHtml(str) {
     });
 }
 
-// Кнопка выхода
+
 document.getElementById('logoutBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
     authService.logout();

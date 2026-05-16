@@ -1,11 +1,6 @@
-/**
- * My plants page - ЧИСТЫЙ ООП
- */
-
 import { authService } from '../services/AuthService.js';
 import { plantService } from '../services/PlantService.js';
 
-// Проверка авторизации
 if (!authService.isAuthenticated()) {
     window.location.href = 'login.html';
 }
@@ -18,13 +13,13 @@ async function initMyPlants() {
 async function renderPlantsGrid() {
     let plants = await plantService.loadPlants();
     
-    // Поиск
+
     const searchTerm = document.getElementById('searchInput')?.value || '';
     if (searchTerm) {
         plants = plants.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
     }
     
-    // Фильтр
+
     const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
     if (activeFilter === 'need-water') {
         const needWater = [];
@@ -53,7 +48,7 @@ async function renderPlantsGrid() {
     if (emptyState) emptyState.style.display = 'none';
     updatePlantsCount(plants.length);
     
-    // Получаем статусы
+  
     const plantsWithStatus = [];
     for (const plant of plants) {
         const days = await plantService.getDaysUntilWatering(plant.lastWatered, plant.waterInterval);
@@ -87,7 +82,6 @@ async function renderPlantsGrid() {
         </div>
     `).join('');
     
-    // Обработчики кнопок
     document.querySelectorAll('.btn-water-card').forEach(btn => {
         btn.addEventListener('click', async (e) => {
             e.stopPropagation();
@@ -139,7 +133,7 @@ function escapeHtml(str) {
     });
 }
 
-// Кнопка выхода
+
 document.getElementById('logoutBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
     authService.logout();

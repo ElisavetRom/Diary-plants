@@ -1,8 +1,3 @@
-/**
- * Фабрика компонентов для создания UI-элементов
- * Паттерн "Фабрика" для создания экземпляров компонентов
- */
-
 import { Button } from '../components/Button.js';
 import { ToggleSwitch } from '../components/ToggleSwitch.js';
 import { PlantCard } from '../components/PlantCard.js';

@@ -1,11 +1,7 @@
-/**
- * Add plant page - с валидацией
- */
-
 import { authService } from '../services/AuthService.js';
 import { plantService } from '../services/PlantService.js';
 
-// Проверка авторизации
+
 if (!authService.isAuthenticated()) {
     window.location.href = 'login.html';
 }
@@ -16,23 +12,23 @@ async function initAddPlant() {
         form.addEventListener('submit', handleAddPlant);
     }
     
-    // Устанавливаем дату по умолчанию
+
     const lastWateredInput = document.getElementById('lastWatered');
     if (lastWateredInput) {
         lastWateredInput.value = new Date().toISOString().split('T')[0];
     }
     
-    // Добавляем валидацию для URL фото
+
     const imageInput = document.getElementById('plantImage');
     const preview = document.getElementById('imagePreview');
     
     if (imageInput && preview) {
-        // Валидация при вводе
+
         imageInput.addEventListener('input', (e) => {
             validateImageUrl(e.target.value, preview);
         });
         
-        // Валидация при потере фокуса
+
         imageInput.addEventListener('blur', (e) => {
             validateImageUrl(e.target.value, preview, true);
         });
@@ -40,17 +36,16 @@ async function initAddPlant() {
     
 }
 
-// Функция валидации URL изображения
+
 function validateImageUrl(url, previewElement, showError = false) {
     const errorId = 'imageUrlError';
     let errorDiv = document.getElementById(errorId);
     
-    // Удаляем старую ошибку, если есть
+
     if (errorDiv) {
         errorDiv.remove();
     }
     
-    // Если URL пустой - это допустимо (будет использовано изображение по умолчанию)
     if (!url || url.trim() === '') {
         if (previewElement) {
             previewElement.innerHTML = '';
@@ -58,12 +53,12 @@ function validateImageUrl(url, previewElement, showError = false) {
         return true;
     }
     
-    // Проверка формата URL
+
     const validation = isValidImageUrl(url);
     
     if (!validation.valid) {
         if (showError) {
-            // Создаём элемент с ошибкой
+
             errorDiv = document.createElement('div');
             errorDiv.id = errorId;
             errorDiv.style.cssText = 'color: #e76f51; font-size: 0.75rem; margin-top: 6px;';
@@ -74,7 +69,7 @@ function validateImageUrl(url, previewElement, showError = false) {
                 parent.appendChild(errorDiv);
             }
             
-            // Подсвечиваем поле красным
+  
             const input = document.getElementById('plantImage');
             if (input) {
                 input.style.borderColor = '#e76f51';
@@ -87,14 +82,14 @@ function validateImageUrl(url, previewElement, showError = false) {
         return false;
     }
     
-    // URL валиден, проверяем что изображение загружается
+   
     if (showError) {
         const img = new Image();
         img.onload = () => {
             if (previewElement) {
                 previewElement.innerHTML = `<img src="${url}" style="max-width:200px;border-radius:16px;margin-top:10px; border:2px solid #40916c;">`;
             }
-            // Убираем подсветку ошибки
+         
             const input = document.getElementById('plantImage');
             if (input) {
                 input.style.borderColor = '#e0ecd6';
@@ -126,13 +121,13 @@ function validateImageUrl(url, previewElement, showError = false) {
     return true;
 }
 
-// Функция проверки формата URL изображения
+
 function isValidImageUrl(string) {
     if (!string || string.trim() === '') {
         return { valid: true, message: '' };
     }
     
-    // Проверка на допустимые расширения изображений
+  
     const imageExtensions = /\.(jpg|jpeg|png|gif|webp|svg|bmp)(\?.*)?$/i;
     const hasImageExtension = imageExtensions.test(string);
     
@@ -163,11 +158,11 @@ function isValidImageUrl(string) {
     }
 }
 
-// Функция валидации всей формы
+
 function validateForm(plantData) {
     const errors = [];
     
-    // Проверка названия
+
     if (!plantData.name || plantData.name.trim() === '') {
         errors.push('Введите название растения');
         highlightError('plantName');
@@ -175,7 +170,7 @@ function validateForm(plantData) {
         clearError('plantName');
     }
     
-    // Проверка типа
+
     if (!plantData.type || plantData.type === '') {
         errors.push('Выберите тип растения');
         highlightError('plantType');
@@ -183,7 +178,6 @@ function validateForm(plantData) {
         clearError('plantType');
     }
     
-    // Проверка интервала полива
     if (!plantData.waterInterval || plantData.waterInterval < 1 || plantData.waterInterval > 60) {
         errors.push('Частота полива должна быть от 1 до 60 дней');
         highlightError('waterInterval');
@@ -191,7 +185,6 @@ function validateForm(plantData) {
         clearError('waterInterval');
     }
     
-    // Проверка URL изображения (если указан)
     if (plantData.imageUrl && plantData.imageUrl.trim() !== '') {
         const urlValidation = isValidImageUrl(plantData.imageUrl);
         if (!urlValidation.valid) {
@@ -210,7 +203,6 @@ function highlightError(fieldId) {
     if (field) {
         field.style.borderColor = '#e76f51';
         
-        // Добавляем сообщение об ошибке, если его нет
         const errorId = `${fieldId}Error`;
         if (!document.getElementById(errorId)) {
             const errorDiv = document.createElement('div');
@@ -254,7 +246,6 @@ function clearError(fieldId) {
 async function handleAddPlant(e) {
     e.preventDefault();
     
-    // Очищаем предыдущие ошибки
     const allErrors = document.querySelectorAll('[id$="Error"]');
     allErrors.forEach(error => error.remove());
     
@@ -269,16 +260,15 @@ async function handleAddPlant(e) {
         typeLabel: getTypeLabel(document.getElementById('plantType').value)
     };
     
-    // Валидация формы
+
     const errors = validateForm(plantData);
     
     if (errors.length > 0) {
-        // Показываем все ошибки в одном сообщении
+   
         alert(`❌ Пожалуйста, исправьте следующие ошибки:\n\n${errors.map((e, i) => `${i + 1}. ${e}`).join('\n')}`);
         return;
     }
     
-    // Если нет фото, устанавливаем по умолчанию
     if (!plantData.imageUrl) {
         plantData.imageUrl = getDefaultImageForType(plantData.type);
     }
@@ -291,7 +281,6 @@ async function handleAddPlant(e) {
     try {
         const newPlant = await plantService.addPlant(plantData);
         
-        // Показываем успешное уведомление
         const successMsg = document.createElement('div');
         successMsg.style.cssText = 'position:fixed; top:20px; right:20px; background:#2d6a4f; color:white; padding:12px 24px; border-radius:40px; z-index:1000; animation:fadeIn 0.3s ease;';
         successMsg.innerHTML = `✅ Растение "${newPlant.name}" успешно добавлено!`;
@@ -336,7 +325,7 @@ function getDefaultImageForType(type) {
     return images[type] || images.other;
 }
 
-// Кнопка выхода
+
 document.getElementById('logoutBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
     authService.logout();

@@ -1,12 +1,8 @@
-/**
- * Calendar page - ЧИСТЫЙ ООП
- */
-
 import { authService } from '../services/AuthService.js';
 import { plantService } from '../services/PlantService.js';
 import { activityService } from '../services/ActivityService.js';
 
-// Проверка авторизации
+
 if (!authService.isAuthenticated()) {
     window.location.href = 'login.html';
 }

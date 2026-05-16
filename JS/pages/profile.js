@@ -1,12 +1,8 @@
-/**
- * Profile page - ЧИСТЫЙ ООП
- */
-
 import { authService } from '../services/AuthService.js';
 import { plantService } from '../services/PlantService.js';
 import { activityService } from '../services/ActivityService.js';
 
-// Проверка авторизации
+
 if (!authService.isAuthenticated()) {
     window.location.href = 'login.html';
 }
@@ -15,7 +11,7 @@ async function initProfile() {
     const user = authService.getCurrentUser();
     if (!user) return;
     
-    // Отображаем данные профиля
+ 
     document.getElementById('profileName').innerText = user.name;
     document.getElementById('profileEmail').innerText = user.email;
     document.getElementById('profileCity').innerText = user.profile?.city || 'Не указан';
@@ -24,7 +20,7 @@ async function initProfile() {
     const joinDate = user.profile?.joinDate || new Date().toISOString().split('T')[0];
     document.getElementById('joinDate').innerHTML = `🌱 Присоединился ${new Date(joinDate).toLocaleDateString('ru-RU')}`;
     
-    // Аватар
+    
     const avatarDisplay = document.getElementById('avatarDisplay');
     if (user.profile?.avatar) {
         avatarDisplay.innerHTML = `<img src="${user.profile.avatar}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
@@ -35,7 +31,7 @@ async function initProfile() {
     await loadStats();
     await renderBadges();
     
-    // Настройки
+
     const toggle = document.getElementById('notificationsToggle');
     if (toggle) {
         toggle.checked = user.profile?.notifications !== false;
@@ -62,7 +58,7 @@ async function loadStats() {
     document.getElementById('userTotalPlants').innerText = plants.length;
     document.getElementById('userTotalWaterings').innerText = waterCount;
     
-    // Streak
+
     let streak = 0;
     const dates = [...new Set(activities.map(a => a.date))].sort().reverse();
     let expectedDate = new Date();
@@ -118,13 +114,9 @@ async function renderBadges() {
     }
 }
 
-// Глобальные функции для HTML
-// Замените функцию window.editProfile на эту:
-
 window.editProfile = function() {
     const user = authService.getCurrentUser();
     
-    // Создаём модальное окно с CSS-классами
     const modal = document.createElement('div');
     modal.className = 'custom-modal';
     
@@ -166,15 +158,12 @@ window.editProfile = function() {
     
     document.body.appendChild(modal);
     
-    // Закрытие по клику на фон
     modal.addEventListener('click', (e) => {
         if (e.target === modal) modal.remove();
     });
     
-    // Кнопка отмены
     document.getElementById('cancelModalBtn')?.addEventListener('click', () => modal.remove());
     
-    // Кнопка сохранения
     document.getElementById('saveModalBtn')?.addEventListener('click', async () => {
         const newName = document.getElementById('editName').value.trim();
         const newEmail = document.getElementById('editEmail').value.trim();
@@ -193,7 +182,6 @@ window.editProfile = function() {
     });
 };
 
-// Функция для аватарки тоже можно сделать красивой
 window.changeAvatar = function() {
     const modal = document.createElement('div');
     modal.className = 'custom-modal';
@@ -233,10 +221,9 @@ window.changeAvatar = function() {
     const errorDiv = document.getElementById('urlError');
     const saveBtn = document.getElementById('saveModalBtn');
     
-    // Функция валидации URL
     function isValidUrl(string) {
         if (!string || string.trim() === '') {
-            return { valid: true, message: '' }; // Пустое значение разрешено (сброс аватарки)
+            return { valid: true, message: '' }; 
         }
         try {
             const url = new URL(string);
@@ -252,7 +239,6 @@ window.changeAvatar = function() {
         }
     }
     
-    // Проверка при вводе
     function validateUrl() {
         const value = urlInput.value;
         const validation = isValidUrl(value);
@@ -275,7 +261,6 @@ window.changeAvatar = function() {
         }
     }
     
-    // Предпросмотр при вводе
     urlInput?.addEventListener('input', (e) => {
         validateUrl();
         
@@ -288,20 +273,16 @@ window.changeAvatar = function() {
         }
     });
     
-    // Валидация перед сохранением
     saveBtn?.addEventListener('click', async () => {
         if (!validateUrl()) {
-            return; // Не сохраняем, если валидация не пройдена
+            return;
         }
         
         const url = urlInput.value.trim();
-        
-        // Дополнительная проверка: если URL не пустой, проверяем что он загружается
         if (url) {
             saveBtn.textContent = '⏳ Проверка...';
             saveBtn.disabled = true;
-            
-            // Проверяем, что изображение действительно загружается
+
             const img = new Image();
             img.onload = async () => {
                 await authService.updateProfile({ avatar: url });
@@ -318,23 +299,20 @@ window.changeAvatar = function() {
             };
             img.src = url;
         } else {
-            // Пустое значение - сбрасываем аватар
             await authService.updateProfile({ avatar: null });
             modal.remove();
             location.reload();
         }
     });
     
-    // Закрытие по клику на фон
     modal.addEventListener('click', (e) => {
         if (e.target === modal) modal.remove();
     });
     
-    // Кнопка отмены
     document.getElementById('cancelModalBtn')?.addEventListener('click', () => modal.remove());
 };
 
-// Модальное окно для подтверждения сброса данных
+
 window.resetAllData = function() {
     const modal = document.createElement('div');
     modal.className = 'custom-modal';

@@ -48,7 +48,6 @@ class PlantService {
             health: 'healthy'
         });
         
-        // Добавляем активность в дневник
         await this._addWaterActivity(plantId);
         
         return true;

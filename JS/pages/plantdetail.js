@@ -1,12 +1,8 @@
-/**
- * Plant detail page - УПРОЩЁННАЯ ВЕРСИЯ (без Modal компонента)
- */
-
 import { authService } from '../services/AuthService.js';
 import { plantService } from '../services/PlantService.js';
 import { activityService } from '../services/ActivityService.js';
 
-// Проверка авторизации
+
 if (!authService.isAuthenticated()) {
     window.location.href = 'login.html';
 }
@@ -39,7 +35,7 @@ async function renderPlantDetail() {
     const days = await plantService.getDaysUntilWatering(currentPlant.lastWatered, currentPlant.waterInterval);
     const lastWateredDate = new Date(currentPlant.lastWatered);
     
-    // Получаем статус
+  
     let statusText, statusClass, statusIcon;
     if (days < 0) {
         statusText = 'Просрочено!';
@@ -136,7 +132,7 @@ async function renderTimeline() {
 }
 
 function setupEventHandlers() {
-    // Кнопка полива
+   
     document.getElementById('waterNowBtn')?.addEventListener('click', async () => {
         await plantService.waterPlant(currentPlant.id);
         currentPlant = await plantService.getPlantById(currentPlant.id);
@@ -144,11 +140,11 @@ function setupEventHandlers() {
         await renderTimeline();
     });
     
-    // Кнопки добавления записи
+  
     document.getElementById('addEventBtn')?.addEventListener('click', () => openAddEventModal());
     document.getElementById('addEventBtn2')?.addEventListener('click', () => openAddEventModal());
     
-    // Кнопка удаления
+  
     document.getElementById('deletePlantBtn')?.addEventListener('click', async () => {
         if (confirm(`Удалить растение "${currentPlant.name}"?`)) {
             await plantService.deletePlant(currentPlant.id);

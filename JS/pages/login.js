@@ -1,23 +1,13 @@
-/**
- * Login page controller
- * Полная реализация авторизации (листинг 6.33)
- */
-
 import { authService } from '../services/AuthService.js';
 
-// DOM элементы
+
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 const errorDiv = document.getElementById('errorMessage');
 const successDiv = document.getElementById('successMessage');
 
-// Состояние загрузки
 let isLoggingIn = false;
 
-/**
- * Обработчик формы входа
- * ЛИСТИНГ 6.33: async function handleLogin(e)
- */
 async function handleLogin(e) {
     e.preventDefault();
     
@@ -44,9 +34,7 @@ async function handleLogin(e) {
     }
 }
 
-/**
- * Обработчик формы регистрации
- */
+
 async function handleRegister(e) {
     e.preventDefault();
     
@@ -97,7 +85,7 @@ function showSuccess(message) {
     successDiv.style.display = 'block';
 }
 
-// Переключение табов
+
 document.querySelectorAll('.auth-tab').forEach(tab => {
     tab.addEventListener('click', () => {
         const tabName = tab.dataset.tab;
@@ -113,11 +101,11 @@ document.querySelectorAll('.auth-tab').forEach(tab => {
     });
 });
 
-// Подключение обработчиков
+
 loginForm.addEventListener('submit', handleLogin);
 registerForm.addEventListener('submit', handleRegister);
 
-// Если уже авторизован - перенаправляем
+
 if (authService.isAuthenticated()) {
     window.location.href = 'dashboard.html';
 }

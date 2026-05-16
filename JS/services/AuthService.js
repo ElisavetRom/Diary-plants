@@ -1,10 +1,3 @@
-/**
- * Сервис авторизации и аутентификации
- * 
- * ЛИСТИНГ 6.33 из методички:
- * Полная реализация авторизации с хранением токена
- */
-
 import { apiService } from './ApiService.js';
 
 class AuthService {
@@ -13,26 +6,18 @@ class AuthService {
         this.authToken = null;
     }
 
-    /**
-     * Аутентификация пользователя
-     * ЛИСТИНГ 6.33: async function loginUser(credentials)
-     */
     async login(credentials) {
         try {
-            // Получаем список пользователей (имитация проверки на сервере)
             const users = await apiService.fetchUsers();
             
-            // Ищем пользователя с такими email и паролем
             const user = users.find(u => u.email === credentials.email && u.password === credentials.password);
             
             if (!user) {
                 throw new Error('Неверные учетные данные');
             }
             
-            // Генерируем токен
             const token = `fake-jwt-token-${user.id}-${Date.now()}`;
             
-            // Сохраняем токен (как в листинге 6.33)
             localStorage.setItem('auth_token', token);
             localStorage.setItem('plantdiary_current_user', JSON.stringify(user));
             
@@ -49,9 +34,6 @@ class AuthService {
         }
     }
 
-    /**
-     * Регистрация пользователя
-     */
     async register(userData) {
         try {
             const users = await apiService.fetchUsers();
@@ -94,9 +76,6 @@ class AuthService {
         }
     }
 
-    /**
-     * Выход из системы (листинг 6.33)
-     */
     logout() {
         localStorage.removeItem('auth_token');
         localStorage.removeItem('plantdiary_current_user');
@@ -105,18 +84,12 @@ class AuthService {
         window.location.href = 'login.html';
     }
 
-    /**
-     * Проверка авторизации
-     */
     isAuthenticated() {
         const token = localStorage.getItem('auth_token');
         const user = localStorage.getItem('plantdiary_current_user');
         return !!(token && user);
     }
 
-    /**
-     * Получить текущего пользователя
-     */
     getCurrentUser() {
         if (this.currentUser) return this.currentUser;
         
@@ -128,17 +101,11 @@ class AuthService {
         return null;
     }
 
-    /**
-     * Получить ID текущего пользователя
-     */
     getCurrentUserId() {
         const user = this.getCurrentUser();
         return user ? user.id : null;
     }
 
-    /**
-     * Обновить профиль пользователя
-     */
     async updateProfile(profileData) {
         const user = this.getCurrentUser();
         if (!user) throw new Error('Пользователь не авторизован');

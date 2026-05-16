@@ -9,7 +9,10 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "build": "echo '✅ Build completed. Static files are ready.'"
+    "dev": "vite",
+    "build:css": "echo ' Build completed. Static files are ready.'",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
@@ -18,7 +21,8 @@
     "babel-jest": "^30.4.1",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
-    "json-server": "^0.17.4"
+    "json-server": "^0.17.4",
+    "vite": "^8.0.13"
   },
   "jest": {
     "testEnvironment": "jsdom",

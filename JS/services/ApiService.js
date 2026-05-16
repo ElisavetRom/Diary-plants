@@ -1,12 +1,3 @@
-/**
- * API Client для работы с сервером
- * 
- * Соответствие требованиям части 6 методички:
- * - 6.4.1 Настройка запросов к API (листинг 6.26)
- * - 6.4.3 Работа с REST API (листинг 6.30)
- * - 6.4.4 Обработка ошибок (листинг 6.32)
- */
-
 const API_BASE_URL = 'https://diary-plants.onrender.com';
 
 class ApiService {
@@ -14,11 +5,6 @@ class ApiService {
         this.baseUrl = API_BASE_URL;
     }
 
-    /**
-     * Базовая функция для HTTP-запросов через Fetch API
-     * ЛИСТИНГ 6.26
-     */
-    
     async request(endpoint, options = {}) {
         const url = `${this.baseUrl}${endpoint}`;
         
@@ -42,10 +28,8 @@ class ApiService {
         }
         
         try {
-            // ЛИСТИНГ 6.26: выполнение запроса
             const response = await fetch(url, config);
             
-            // ЛИСТИНГ 6.32: проверка статуса ответа
             if (!response.ok) {
                 console.error(`Ошибка HTTP: ${response.status} ${response.statusText}`);
                 throw new Error(`Ошибка сервера: ${response.status} ${response.statusText}`);
@@ -57,7 +41,6 @@ class ApiService {
             return { success: true, data, status: response.status };
             
         } catch (error) {
-            // ЛИСТИНГ 6.32: логирование ошибки
             console.error('Ошибка при выполнении запроса:', error);
             
             return { 
@@ -67,8 +50,6 @@ class ApiService {
             };
         }
     }
-
-    // ===== REST API методы (листинг 6.30) =====
 
     async get(endpoint) {
         return this.request(endpoint, { method: 'GET' });
@@ -85,8 +66,6 @@ class ApiService {
     async delete(endpoint) {
         return this.request(endpoint, { method: 'DELETE' });
     }
-
-    // ===== Специфические методы =====
 
     async fetchUsers() {
         const result = await this.get('/users');
